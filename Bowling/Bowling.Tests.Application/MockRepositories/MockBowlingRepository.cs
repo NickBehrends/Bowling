@@ -25,7 +25,7 @@ namespace Bowling.Tests.Application.MockRepositories
             });
         }
 
-        public Task ThrowBall(ThrowBall.Command request)
+        public Task ThrowBall(ThrowBall.Command request, CancellationToken? cancellationToken = null)
         {
             throw new NotImplementedException();
         }

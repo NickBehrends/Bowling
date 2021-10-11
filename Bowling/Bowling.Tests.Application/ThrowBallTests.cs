@@ -22,7 +22,7 @@ namespace Bowling.Tests.Application
 
             var sut = new ThrowBall.Handler(commandRepoMock.Object, queryRepoMock.Object);
             Assert.ThrowsAsync<TooManyPinsKnockedException>(async () =>
-                await sut.Handle(new ThrowBall.Command(Guid.NewGuid(), 11), CancellationToken.None));
+                await sut.Handle(new ThrowBall.Command("test", 11), CancellationToken.None));
         }
 
         [Fact]
@@ -30,11 +30,11 @@ namespace Bowling.Tests.Application
         {
             var commandRepoMock = new Mock<IBowlingCommandsRepository>();
             var queryRepoMock = new Mock<IBowlingQueriesRepository>();
-            queryRepoMock.Setup(x => x.DoesUserExist(It.IsAny<Guid>(), It.IsAny<CancellationToken>())).ReturnsAsync(false);
+            queryRepoMock.Setup(x => x.DoesUserExist(It.IsAny<string>(), It.IsAny<CancellationToken>())).ReturnsAsync(false);
 
             var sut = new ThrowBall.Handler(commandRepoMock.Object, queryRepoMock.Object);
             Assert.ThrowsAsync<UserNotFoundException>(async () =>
-                await sut.Handle(new ThrowBall.Command(Guid.NewGuid(), 10), CancellationToken.None));
+                await sut.Handle(new ThrowBall.Command("test", 10), CancellationToken.None));
         }
     }
 }
