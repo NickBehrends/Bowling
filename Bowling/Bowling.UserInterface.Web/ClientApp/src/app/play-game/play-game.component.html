@@ -1,0 +1,30 @@
+<h1>{{currentGame.name}}</h1>
+
+<table>
+  <thead>
+    <tr>
+      <td>Player</td>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+      <td>4</td>
+      <td>5</td>
+      <td>6</td>
+      <td>7</td>
+      <td>8</td>
+      <td>9</td>
+      <td>10</td>
+    </tr>
+  </thead>
+
+  <tr *ngFor="let player of currentGame.players">
+    <td>{{player.name}}</td>
+    <td *ngFor="let frame of player.frames; index as i">
+      {{frame.throws[0].pins}}
+    </td>
+  </tr>
+</table>
+
+<h2>It's <b>{{currentPlayer}}</b>'s turn</h2>
+<button (click)="throwTheBall()">THROW THE BALL</button>
+You rolled: {{roll}}!

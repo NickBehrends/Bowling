@@ -1,0 +1,2 @@
+<app-start-game *ngIf="!gameInProgress" (gameCreatedEvent)="gameStarted($event)"></app-start-game>
+<app-play-game *ngIf="gameInProgress"></app-play-game>

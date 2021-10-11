@@ -1,0 +1,22 @@
+<h1>Create a new game!</h1>
+
+<form [formGroup]="gameForm" (ngSubmit)="startGame()">
+  <label for="game-name">Game Name: </label>
+  <input id="game-name" type="text" formControlName="gameName" required>
+
+  <hr />
+
+  <div formArrayName="players">
+    <h2>Players</h2>
+    <button type="button" (click)="addPlayer()">+ Add another player</button>
+
+    <div *ngFor="let player of players.controls; let i=index">
+      <!-- The repeated player template -->
+      <label for="player-{{ i }}">Player:</label>
+      <input id="player-{{ i }}" type="text" [formControlName]="i">
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="!gameForm.valid">Start Game</button>
+</form>
+
